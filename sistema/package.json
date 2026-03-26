@@ -1,0 +1,29 @@
+{
+  "name": "provas-monorepo",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install --workspace=client && npm run install --workspace=server",
+    "dev": "npm run dev --workspace=server & npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build": "npm run build --workspace=server && npm run build --workspace=client",
+    "test:acceptance": "npx ts-node run-tests.ts",
+    "test:cucumber": "npx cucumber-js --require-module ts-node/register --require 'features/support/**/*.ts' --require 'features/step_definitions/**/*.ts' 'features/**/*.feature'"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.0.0",
+    "@types/adm-zip": "^0.4.4",
+    "@types/chai": "^5.2.3",
+    "chai": "^4.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}

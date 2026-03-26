@@ -1,0 +1,97 @@
+{
+  "questoes": [
+    {
+      "id": "bfd98564-ecc2-456f-b14c-9ca6570c1ca8",
+      "enunciado": "Qual é a capital do Brasil?",
+      "alternativas": [
+        {
+          "id": "a",
+          "descricao": "São Paulo",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "descricao": "Brasília",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "descricao": "Rio de Janeiro",
+          "correta": false
+        }
+      ]
+    },
+    {
+      "id": "f63f98b4-eca1-499d-b05e-a743fdda39b2",
+      "enunciado": "Qual é a capital da PB?",
+      "alternativas": [
+        {
+          "id": "a",
+          "descricao": "Pombal",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "descricao": "João Pessoa",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "descricao": "Recife",
+          "correta": false
+        }
+      ]
+    },
+    {
+      "id": "98e09122-989c-4868-922e-6e2b0d9c1683",
+      "enunciado": "Quem descobriu o Brasil?",
+      "alternativas": [
+        {
+          "id": "a",
+          "descricao": "Povos indigenas",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "descricao": "Portugal",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "descricao": "Espanha",
+          "correta": false
+        }
+      ]
+    }
+  ],
+  "provas": [
+    {
+      "id": "1e94c048-f5ca-4254-b689-0fe1eb22f564",
+      "nome": "Prova teste potencias",
+      "questoesIds": [
+        "bfd98564-ecc2-456f-b14c-9ca6570c1ca8",
+        "f63f98b4-eca1-499d-b05e-a743fdda39b2"
+      ],
+      "identificacaoAlternativas": "potencias"
+    },
+    {
+      "id": "16349754-8fbc-4064-b076-3825051399e0",
+      "nome": "Prova teste ",
+      "questoesIds": [
+        "bfd98564-ecc2-456f-b14c-9ca6570c1ca8",
+        "f63f98b4-eca1-499d-b05e-a743fdda39b2",
+        "98e09122-989c-4868-922e-6e2b0d9c1683"
+      ],
+      "identificacaoAlternativas": "letras"
+    },
+    {
+      "id": "f78f20e9-1f85-4653-92d4-2c8689374d49",
+      "nome": "teste",
+      "questoesIds": [
+        "bfd98564-ecc2-456f-b14c-9ca6570c1ca8",
+        "f63f98b4-eca1-499d-b05e-a743fdda39b2"
+      ],
+      "identificacaoAlternativas": "letras"
+    }
+  ]
+}

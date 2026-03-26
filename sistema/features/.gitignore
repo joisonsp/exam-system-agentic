@@ -1,0 +1,25 @@
+# Relatórios de teste
+cucumber-report.html
+cucumber-report.json
+
+# Node modules
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Arquivos temporários
+/tmp
+/temp
+*.tmp
+
+# ZIPs de teste
+*.zip
+teste*.pdf

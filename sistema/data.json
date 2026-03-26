@@ -1,0 +1,23 @@
+{
+  "questoes": [
+    {
+      "id": "q1",
+      "enunciado": "Qual é a capital do Brasil?",
+      "alternativas": [
+        { "id": "a", "descricao": "São Paulo", "correta": false },
+        { "id": "b", "descricao": "Brasília", "correta": true },
+        { "id": "c", "descricao": "Rio de Janeiro", "correta": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "enunciado": "2 + 2 = ?",
+      "alternativas": [
+        { "id": "a", "descricao": "3", "correta": false },
+        { "id": "b", "descricao": "4", "correta": true },
+        { "id": "c", "descricao": "5", "correta": false }
+      ]
+    }
+  ],
+  "provas": []
+}

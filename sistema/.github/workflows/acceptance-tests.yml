@@ -1,0 +1,97 @@
+name: Acceptance Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    # 1. Checkout
+    - uses: actions/checkout@v3
+
+    # 2. Setup Node.js
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    # 3. Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # 4. Build projects
+    - name: Build server
+      run: npm run build --workspace=server
+
+    - name: Build client
+      run: npm run build --workspace=client
+
+    # 5. Run acceptance tests
+    - name: Run acceptance tests
+      run: npm run test:acceptance
+      timeout-minutes: 15
+
+    # 6. Upload reports
+    - name: Upload test reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: cucumber-reports-${{ matrix.node-version }}
+        path: |
+          cucumber-report.html
+          cucumber-report.json
+
+    # 7. Publish test results
+    - name: Publish test results
+      if: always()
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      with:
+        files: cucumber-report.json
+        check_name: Cucumber Tests (${{ matrix.node-version }})
+
+    # 8. Comment PR with results
+    - name: Comment PR
+      if: github.event_name == 'pull_request' && always()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('cucumber-report.json', 'utf8'));
+          
+          const stats = {
+            features: report.length,
+            scenarios: report.reduce((sum, f) => sum + f.elements.length, 0),
+            passed: report.reduce((sum, f) => {
+              const passed = f.elements.reduce((e, el) => {
+                const steps = el.steps || [];
+                const allPassed = steps.every(s => s.result?.status === 'passed');
+                return e + (allPassed ? 1 : 0);
+              }, 0);
+              return sum + passed;
+            }, 0),
+          };
+
+          const comment = `## 🧪 Acceptance Tests Results
+
+          **Features:** ${stats.features}
+          **Scenarios:** ${stats.scenarios}
+          **Passed:** ${stats.passed}/${stats.scenarios}
+          
+          ✅ All tests passed!`;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });

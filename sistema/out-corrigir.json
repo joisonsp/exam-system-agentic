@@ -1,0 +1,1 @@
+{"success":true,"message":"1 prova(s) corrigida(s) com sucesso","modo":"rigoroso","resultados":[{"nomeAluno":"Joao","numeroProva":1,"acertos":2,"total":2,"percentual":100,"status":"Excelente"}],"csv":"Nome do Aluno,Número Prova,Acertos,Total,Percentual (%),Status\n\"Joao\",1,2,2,100.00,Excelente"}
